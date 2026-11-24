@@ -11,11 +11,16 @@ Writes: /output/entry.png
 from __future__ import annotations
 
 import os
+import sys
+
+# The grader runs `python3 -P -s /bot/main.py`, which does not put
+# the script directory on sys.path, so a bare sibling import fails.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from render import Canvas, Font
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-OUT = "/output/entry.png"
+OUT = os.path.join(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"), "entry.png")
 
 PAPER = (246, 241, 232)
 INK = (24, 21, 18)
